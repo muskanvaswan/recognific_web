@@ -1,10 +1,35 @@
-.title
+.main .heading
 {
-  margin: 30%;
-  font-size: 50px;
-  font-family: 'Potta One', cursive;
-  align-items: center;
-  line-height: 32px;
+
+  /*font-family: 'Playfair Display', serif;*/
+  /*font-family: 'Telex', sans-serif;*/
+  font-family: 'Vidaloka', serif;
+
+font-style:normal;
+font-weight: normal;
+font-size: 80px;
+line-height: 103px;
+align-content: center;
+align-items: center;
+align-self: auto;
+
+color: #FEFFFF;
 
 
 }
+
+/*body{
+  position: absolute;
+width: 727px;
+height: 198px;
+left: 169px;
+top: 238px;
+
+font-family: Modern No. 20;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 26px;
+
+color: #000000;
+} */

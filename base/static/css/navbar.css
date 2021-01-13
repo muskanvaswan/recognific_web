@@ -1,11 +1,14 @@
 .navbar{
-  background-color: #000000;
-  height: 100%;
-  width: 160px;
-  position: fixed;
+  position: absolute;
+width: 99px;
+height: 900px;
+left: 0px;
+top: 0px;
+
+ background: rgba(0, 0, 0, 0.77);
+ box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+
   z-index: 1;
-  top: 0;
-  left: 0;
   overflow-x: hidden;
   padding-top: 20px;
 }
