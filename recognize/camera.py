@@ -11,10 +11,12 @@ encodings = reading_encodings('creators')['encodings']
 
 
 class VideoCamera(object):
-    def __init__(self):
+    def __init__(self, classname):
         self.webcam = cv2.VideoCapture(0)
         if not self.webcam.read(0)[0]:
             self.webcam = cv2.VideoCapture(1)
+        self.IMAGES_LIST = os.listdir(f'images/{classname}/')
+        self.encodings = reading_encodings(classname)['encodings']
 
         self.recognised = []
 
@@ -38,9 +40,9 @@ class VideoCamera(object):
             locations = locations[0]
 
             image = fr.face_encodings(frame)[0]
-            matches = fr.face_distance(encodings, image)
+            matches = fr.face_distance(self.encodings, image)
             i = np.where(matches == min(matches))[0][0]
-            name = IMAGES_LIST[i].split('.')[0]
+            name = self.IMAGES_LIST[i].split('.')[0]
             self.recognised.append(name)
 
         except:
@@ -55,3 +57,8 @@ class VideoCamera(object):
         res, jpeg = cv2.imencode('.jpeg', frame)
 
         return jpeg.tobytes()
+
+    def attendace(self):
+        person = max(self.recognised, key=self.recognised.count)
+        Attendance = [person, str(datetime.datetime.now())]
+        csv_writter(Attendance)
