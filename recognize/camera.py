@@ -5,6 +5,8 @@ import os
 import sys
 import datetime
 from .reader import reading_encodings, csv_writter
+from encode.models import Student
+
 
 IMAGES_LIST = os.listdir('images/creators/')
 encodings = reading_encodings('creators')['encodings']
@@ -15,8 +17,12 @@ class VideoCamera(object):
         self.webcam = cv2.VideoCapture(0)
         if not self.webcam.read(0)[0]:
             self.webcam = cv2.VideoCapture(1)
-        self.IMAGES_LIST = os.listdir(f'images/{classname}/')
-        self.encodings = reading_encodings(classname)['encodings']
+        data = reading_encodings(classname)
+        try:
+            self.IMAGES_LIST = [Student.objects.get(pk=id).first_name for id in data['order']]
+        except:
+            self.IMAGES_LIST = os.listdir(f'images/{classname}/')
+        self.encodings = data['encodings']
 
         self.recognised = []
 
