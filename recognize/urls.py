@@ -4,5 +4,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    #path('', views.livefe, name="camera"),
+    path('', views.stream_view, name="camera"),
+    path('face/', views.face_view, name="face")
 ]
