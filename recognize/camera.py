@@ -5,7 +5,8 @@ import os
 import sys
 import datetime
 from .reader import reading_encodings, csv_writter
-from encode.models import Student
+from encode.models import Student, ClassSet
+from .models import Attendance
 
 
 IMAGES_LIST = os.listdir('images/creators/')
@@ -18,7 +19,8 @@ class VideoCamera(object):
         if not self.webcam.read(0)[0]:
             self.webcam = cv2.VideoCapture(1)
         data = reading_encodings(classname)
-        print(data)
+        # print(data)
+        self.classset = ClassSet.objects.get(pk=classname.split('class')[1])
 
         self.IMAGES_LIST = [Student.objects.get(pk=id) for id in data['order']]
 
@@ -67,5 +69,7 @@ class VideoCamera(object):
 
     def attendace(self):
         person = max(self.recognised, key=self.recognised.count)
-        Attendance = [person.get_full_name(), str(datetime.datetime.now())]
-        csv_writter(Attendance)
+        a = Attendance(classname=self.classset, student=person)
+        a.save()
+        attendance = [person.get_full_name(), str(datetime.datetime.now())]
+        csv_writter(attendance)
