@@ -20,7 +20,7 @@ class VideoCamera(object):
         data = reading_encodings(classname)
         print(data)
 
-        self.IMAGES_LIST = [Student.objects.get(pk=id).first_name for id in data['order']]
+        self.IMAGES_LIST = [Student.objects.get(pk=id) for id in data['order']]
 
         #self.IMAGES_LIST = os.listdir(f'images/{classname}/')
         self.encodings = data['encodings']
@@ -49,8 +49,8 @@ class VideoCamera(object):
             image = fr.face_encodings(frame)[0]
             matches = fr.face_distance(self.encodings, image)
             i = np.where(matches == min(matches))[0][0]
-            name = self.IMAGES_LIST[i].split('.')[0]
-            self.recognised.append(name)
+            name = self.IMAGES_LIST[i].get_full_name()
+            self.recognised.append(self.IMAGES_LIST[i])
 
         except:
             locations = (0, 0, 0, 0)
@@ -59,7 +59,7 @@ class VideoCamera(object):
         frame = cv2.rectangle(frame, (locations[1], locations[0]),
                               (locations[3], locations[2]), (0, 255, 0), 2)
         frame = cv2.putText(frame, name,  (locations[3], locations[2]+20),
-                            cv2.FONT_HERSHEY_SIMPLEX,  1, (0, 255, 0), 2, cv2.LINE_AA)
+                            cv2.FONT_HERSHEY_SIMPLEX,  0.5, (0, 255, 0), 1, cv2.LINE_AA)
 
         res, jpeg = cv2.imencode('.jpeg', frame)
 
@@ -67,5 +67,5 @@ class VideoCamera(object):
 
     def attendace(self):
         person = max(self.recognised, key=self.recognised.count)
-        Attendance = [person, str(datetime.datetime.now())]
+        Attendance = [person.get_full_name(), str(datetime.datetime.now())]
         csv_writter(Attendance)
