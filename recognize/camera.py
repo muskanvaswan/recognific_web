@@ -5,16 +5,25 @@ import os
 import sys
 import datetime
 from .reader import reading_encodings, csv_writter
+from encode.models import Student
+
 
 IMAGES_LIST = os.listdir('images/creators/')
 encodings = reading_encodings('creators')['encodings']
 
 
 class VideoCamera(object):
-    def __init__(self):
+    def __init__(self, classname):
         self.webcam = cv2.VideoCapture(0)
         if not self.webcam.read(0)[0]:
             self.webcam = cv2.VideoCapture(1)
+        data = reading_encodings(classname)
+        print(data)
+
+        self.IMAGES_LIST = [Student.objects.get(pk=id) for id in data['order']]
+
+        #self.IMAGES_LIST = os.listdir(f'images/{classname}/')
+        self.encodings = data['encodings']
 
         self.recognised = []
 
@@ -38,10 +47,10 @@ class VideoCamera(object):
             locations = locations[0]
 
             image = fr.face_encodings(frame)[0]
-            matches = fr.face_distance(encodings, image)
+            matches = fr.face_distance(self.encodings, image)
             i = np.where(matches == min(matches))[0][0]
-            name = IMAGES_LIST[i].split('.')[0]
-            self.recognised.append(name)
+            name = self.IMAGES_LIST[i].get_full_name()
+            self.recognised.append(self.IMAGES_LIST[i])
 
         except:
             locations = (0, 0, 0, 0)
@@ -50,8 +59,13 @@ class VideoCamera(object):
         frame = cv2.rectangle(frame, (locations[1], locations[0]),
                               (locations[3], locations[2]), (0, 255, 0), 2)
         frame = cv2.putText(frame, name,  (locations[3], locations[2]+20),
-                            cv2.FONT_HERSHEY_SIMPLEX,  1, (0, 255, 0), 2, cv2.LINE_AA)
+                            cv2.FONT_HERSHEY_SIMPLEX,  0.5, (0, 255, 0), 1, cv2.LINE_AA)
 
         res, jpeg = cv2.imencode('.jpeg', frame)
 
         return jpeg.tobytes()
+
+    def attendace(self):
+        person = max(self.recognised, key=self.recognised.count)
+        Attendance = [person.get_full_name(), str(datetime.datetime.now())]
+        csv_writter(Attendance)

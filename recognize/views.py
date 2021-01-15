@@ -10,8 +10,12 @@ t = loader.get_template('recognize/camera.html')  # or whatever
 buffer = '+' * 1024
 
 
-def face_view(request):
-    return render(request, 'recognize/face.html')
+def face_view(request, classname):
+    # print(classname)
+    context = {
+        "classname": classname
+    }
+    return render(request, 'recognize/face.html', context)
 
 
 def gen_rendered(camera):
@@ -19,9 +23,10 @@ def gen_rendered(camera):
         frame = camera.detect()
         yield (b'--frame\r\n'
                b'Content-Type: image.jpeg\r\n\r\n' + frame + b'\r\n\r\n')
+    camera.attendace()
 
 
-def stream_view(request):
-    response = StreamingHttpResponse(gen_rendered(VideoCamera()),
+def stream_view(request, classname):
+    response = StreamingHttpResponse(gen_rendered(VideoCamera(classname)),
                                      content_type='multipart/x-mixed-replace; boundary=frame')
     return response
