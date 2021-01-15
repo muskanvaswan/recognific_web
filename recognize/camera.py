@@ -18,9 +18,11 @@ class VideoCamera(object):
         self.webcam = cv2.VideoCapture(0)
         if not self.webcam.read(0)[0]:
             self.webcam = cv2.VideoCapture(1)
-        data = reading_encodings(classname)
-        # print(data)
         self.classset = ClassSet.objects.get(pk=classname.split('class')[1])
+        data = reading_encodings(classname)
+        if data['order'] == []:
+            self.classset.save()
+            data = reading_encodings(classname)
 
         self.IMAGES_LIST = [Student.objects.get(pk=id) for id in data['order']]
 
