@@ -1,43 +1,116 @@
-.navbar{
-  position: absolute;
-width: 99px;
-height: 900px;
-left: 0px;
-top: 0px;
-
- background: rgba(0, 0, 0, 0.77);
- box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
-
-  z-index: 1;
+.sidebar {
+  position: fixed;
+  /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 61;
+  /* Stay on top */
   overflow-x: hidden;
-  padding-top: 10px;
+  /* Disable horizontal scroll */
+  padding-top: 20px;
+  width: 70px;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  background: rgba(1, 0, 0, 1);
 }
 
-/* The navigation menu links */
-.navbar a {
-  padding: 6px 25px 6px 25px;
+#sidebar-mobile {
+  position: fixed;
+  /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1 !important;
+  /* Stay on top */
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 20px;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  background: rgba(1, 0, 0);
+}
+
+.main {
+  margin-left: 19%;
+  /* Same as the width of the sidebar */
+  padding: 0px 0px;
+}
+
+.footer {
+  position: fixed;
+  padding: 10px;
+  left: 0;
+  bottom: 0;
+  width: inherit;
+  color: white;
+  text-align: center;
+}
+
+.title2 {
+  font-family: Nunito Sans;
   font-style: normal;
-  font-family:sans-serif;
-  text-decoration: none;
+  font-weight: bold;
   font-size: 25px;
-  color: #FEFFFF;
-  display: block;
+  line-height: 35px;
+  display: flex;
+  align-items: center;
+  color: #fcf9f9;
 }
 
-/* When you mouse over the navigation links, change their color */
-.navbar a:hover {
-  color: #3AAFA9;
+.title3 {
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+  color: #fcf9f9;
 }
 
-/* Style page content */
-/*.main {
-  margin-left: 160px;
-  font-size: 28px;
-  padding: 0px 10px;
-} */
+.title4 {
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #fcf9f9;
+}
 
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .navbar {padding-top: 5px;}
-  .navbar a {font-size: 18px;}
+#hover-target:hover {
+  background-color: rgb(32, 31, 31);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.logo {
+  width: 93px;
+  height: 93px;
+  background-blend-mode: soft-light;
+  border-radius: 50px;
+}
+
+@media only screen and (max-width: 1300px) {
+  .sidebar {
+    width: 25%
+  }
+
+  .main {
+    margin-left: 24%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .sidebar {
+    width: 30%
+  }
+
+  .main {
+    margin-left: 29%;
+  }
+}
+
+.mobile-sidebar {
+  display: none;
 }

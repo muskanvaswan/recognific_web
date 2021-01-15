@@ -27,24 +27,20 @@
 
   <body>
     {% block navbar %}
-    <div class="navbar d-flex justify-content-center">
-      <a class="active" href="{% url 'index' %}"><i class="fa fa-home fa"></i></a><br>
-      <a href="#"><i class="fa fa-info"></i></a><br>
-      <a href="#"><i class="fa fa-envelope"></i></a><br>
+      {% include 'includes/navbar.html' %}
 
-      <!--<a href="{% url 'index' %}"> Home </a>
-      <a href="#"> About </a>
-      <a href="#"> Contact Us </a> -->
-    </div>
+
     {% endblock %}
 
     <div class="main" id="main">
       {% block body %}{% endblock %}
     </div>
     {% block bottombar %}
+      
     {% endblock %}
 
-    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+    <!--      <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>     -->
+
 
     {% block additional_js %}{% endblock %}
   </body>
