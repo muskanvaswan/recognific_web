@@ -18,10 +18,11 @@ class VideoCamera(object):
         if not self.webcam.read(0)[0]:
             self.webcam = cv2.VideoCapture(1)
         data = reading_encodings(classname)
-        try:
-            self.IMAGES_LIST = [Student.objects.get(pk=id).first_name for id in data['order']]
-        except:
-            self.IMAGES_LIST = os.listdir(f'images/{classname}/')
+        print(data)
+
+        self.IMAGES_LIST = [Student.objects.get(pk=id).first_name for id in data['order']]
+
+        #self.IMAGES_LIST = os.listdir(f'images/{classname}/')
         self.encodings = data['encodings']
 
         self.recognised = []
