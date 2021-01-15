@@ -1,52 +1,62 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 import numpy as np
 import pickle
-
+import json
 
 from .encodings import encode_image
 
-# Create your models here.
 
+def make_encodings(instance):
+    c = instance
+    IMAGES_LIST = [student.encodings['e'] for student in c.students.all()]
+    ORDER_LIST = [student.id for student in c.students.all()]
 
-class ClassSet(models.Model):
-    name = models.CharField(max_length=100)
-    teacher = models.ManyToManyField(User, blank=True)
+    encodings = np.array(IMAGES_LIST)
 
-    def make_encodings(self):
-        IMAGES_LIST = [student.encodings for student in self.students.all()]
-        ORDER_LIST = [student.id for student in self.students.all()]
+    #encodings = np.array(list(map(encode_image, IMAGES_LIST)))
+    encodings = {"encodings": encodings, "order": ORDER_LIST}
 
-        encodings = np.array(IMAGES_LIST)
+    # opening file in write mode (binary)
+    file = open(f"encodings/class{c.id}.txt", "wb+")
 
-        #encodings = np.array(list(map(encode_image, IMAGES_LIST)))
-        encodings = {"encodings": encodings, "order": ORDER_LIST}
-
-        # opening file in write mode (binary)
-        file = open(f"encodings/class{self.id}.txt", "wb+")
-
-        # serializing dictionary
-        pickle.dump(encodings, file)
-        # closing the file
-        file.close()
-
-    # def get_student_order(self):
-        # return json.loads(self.student_order)
-
-    def save(self, *args, **kwargs):
-        self.make_encodings()
-        return super().save(*args, **kwargs)
+    # serializing dictionary
+    pickle.dump(encodings, file)
+    # closing the file
+    file.close()
 
 
 class Student(models.Model):
     first_name = models.CharField(max_length=80)
     last_name = models.CharField(max_length=80, default='')
-    classname = models.ManyToManyField(ClassSet, related_name='students')
+    # classname = models.ManyToManyField(ClassSet, related_name='students')
     image = models.ImageField(upload_to='images/students')
-    encodings = models.TextField(blank=True)
+    encodings = models.JSONField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        for c in self.classname.all():
-            c.make_encodings()
-        self.encodings = encode_image(self.image.url)
+        self.encodings = {"e": encode_image(self.image.url).tolist()}
         return super().save(*args, **kwargs)
+
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+    def __str__(self):
+        return f"{self.get_full_name()}"
+
+
+class ClassSet(models.Model):
+    name = models.CharField(max_length=100)
+    teacher = models.ManyToManyField(User, blank=True)
+    students = models.ManyToManyField(Student, related_name='classname')
+
+    def __str__(self):
+        return f"{self.name} by {self.teacher}"
+
+
+@receiver(post_save, sender=ClassSet)
+def my_handler(sender, **kwargs):
+    print(kwargs.get("instance"))
+    make_encodings(kwargs.get("instance"))
