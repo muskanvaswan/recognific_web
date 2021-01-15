@@ -93,21 +93,21 @@ a {
 
 @media only screen and (max-width: 1300px) {
   .sidebar {
-    width: 25%
+    width: 7%;
   }
 
   .main {
-    margin-left: 24%;
+    margin-left: 10%;
   }
 }
 
 @media only screen and (max-width: 1000px) {
   .sidebar {
-    width: 30%
+    width: 9%
   }
 
   .main {
-    margin-left: 29%;
+    margin-left: 10%;
   }
 }
 
