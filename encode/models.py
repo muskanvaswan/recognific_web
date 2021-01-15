@@ -40,7 +40,7 @@ class Student(models.Model):
     encodings = models.JSONField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        self.encodings = {"e": encode_image(self.image.url).tolist()}
+        #self.encodings = {"e": encode_image(self.image.url).tolist()}
         return super().save(*args, **kwargs)
 
     def get_full_name(self):
@@ -70,8 +70,14 @@ def my_handler(sender, **kwargs):
     make_encodings(kwargs.get("instance"))
 
 
-# @receiver(post_init, sender=ClassSet)
-# def my_handler(sender, instance, **kwargs):
+@receiver(post_save, sender=Student)
+def student_save_handler(sender, **kwargs):
+    instance = kwargs.get('instance')
+    if kwargs.get('created') == True:
+        print("here")
+        instance.encodings = {"e": encode_image(instance.image.url).tolist()}
+        instance.save()
+
     # if kwargs.get("created"):
     # print(kwargs.get("instance"))
     # make_encodings(kwargs.get("instance"))
