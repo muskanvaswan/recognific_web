@@ -5,4 +5,6 @@ from . import views
 
 urlpatterns = [
     path('classset/create/', views.ClassSetCreateView.as_view(), name="create_classset"),
+    path('student/create/', views.StudentCreateView.as_view(), name="create_student"),
+
 ]
