@@ -6,5 +6,20 @@
 {% block body %}
 <div class=" container p-5">
   <h1>Dashboard</h1>
+  <div class="p-5">
+    <h5>  Your Classes:</h5>
+    <ul>
+
+      {% for ClassSet in classes %}
+        <li>
+          <a href="#">{{ ClassSet.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <a href="{% url 'create_classset' %}" class="btn btn-primary"> Create Class </a>
+    <a href="{% url 'create_student' %}" class="btn btn-primary"> Create Student </a>
+
+
+  </div>
 </div>
 {% endblock %}

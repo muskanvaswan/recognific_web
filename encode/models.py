@@ -32,7 +32,7 @@ class Student(models.Model):
 
 class ClassSet(models.Model):
     name = models.CharField(max_length=100)
-    teacher = models.ManyToManyField(User, blank=True)
+    teacher = models.ManyToManyField(User, blank=True, related_name="classes")
     students = models.ManyToManyField(Student, related_name='classname')
 
     def __str__(self):

@@ -21,3 +21,8 @@ class StudentCreateView(LoginRequiredMixin, CreateView):
 
 class DashboardView(TemplateView):
     template_name = 'encode/dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['classes'] = self.request.user.classes.all()
+        return context
