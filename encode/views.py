@@ -1,4 +1,5 @@
-from django.views.generic.edit import CreateView, TemplateView
+from django.views.generic.edit import CreateView
+from django.views.generic import TemplateView
 from .models import ClassSet, Student
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
