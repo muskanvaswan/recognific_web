@@ -11,6 +11,7 @@
   left: 0px;
   top: 0px;
   background: rgba(1, 0, 0, 1);
+
 }
 
 #sidebar-mobile {
@@ -29,7 +30,7 @@
 }
 
 .main {
-  margin-left: 80px;
+  margin-left: 70px;
   /* Same as the width of the sidebar */
   padding: 0px 0px;
 }
