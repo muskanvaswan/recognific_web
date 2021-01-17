@@ -1,4 +1,4 @@
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, TemplateView
 from .models import ClassSet, Student
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -16,3 +16,7 @@ class StudentCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('index')
     fields = ['first_name', 'last_name', 'image']
     template_name = 'encode/create.html'
+
+
+class DashboardView(TemplateView):
+    template_name = 'encode/dashboard.html'
