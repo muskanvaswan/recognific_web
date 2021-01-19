@@ -8,11 +8,18 @@
   <h1>Dashboard</h1>
   <div class="p-5">
     <h5>  Your Classes:</h5>
+    <p>Download Attendance for a <input type="text" name="option" value="day" id="option"></p>
+
     <ul>
 
       {% for ClassSet in classes %}
         <li>
-          <a href="#">{{ ClassSet.name }}</a>
+          <div class="card m-3">
+            <div class="card-body d-flex justify-content-between">
+              <h5>{{ ClassSet.name }}</h5>
+              <button type="button" class="btn btn-primary" data-classname="{{ ClassSet.id }}" onclick="attendance(this)"name="button">Make Attendance Sheet</button>
+            </div>
+          </div>
         </li>
       {% endfor %}
     </ul>
@@ -21,5 +28,24 @@
 
 
   </div>
+  <script type="text/javascript">
+    function attendance(e){
+        var data = JSON.stringify({"option":document.getElementById('option').value,"date":[2021,1,15], "month":1});
+
+        var xhr = new XMLHttpRequest();
+        xhr.withCredentials = true;
+
+        xhr.addEventListener("readystatechange", function() {
+          if(this.readyState === 4) {
+            console.log(this.responseText);
+          }
+        });
+
+        xhr.open("POST", `http://127.0.0.1:8000/r/api/make_sheet/${e.dataset.classname}/`);
+
+        xhr.send(data);
+    }
+
+  </script>
 </div>
 {% endblock %}
