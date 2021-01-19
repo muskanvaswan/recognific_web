@@ -5,7 +5,7 @@ from .reader import csv_writter, excel_writer
 
 
 def attendance_sheet_day(date, classname):
-    if date == 0:
+    if date == 0 or date == "0":
         date = datetime.datetime.now().timetuple()
     qs = attendance_day(date, classname)
     file = open(f"Attendance/sheet_{classname}.csv", 'w+')
