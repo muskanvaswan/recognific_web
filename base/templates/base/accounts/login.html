@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block title %}Log In{% endblock %}
+{% block additional_css %}<link rel="stylesheet" href="{% static 'css/index.css' %} ">{% endblock %}
 
 {% block body %}
 
@@ -11,15 +12,20 @@
   {{message}}
 </div>
 {% endif %}
-
+<div class=" container p-5">
+<div class=" heading">
+  Login
+</div>
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
-<input type="text" name="username" value="" placeholder="Enter Username">
-<input type="password" name="password" value="" placeholder="Enter Passsword">
-
-<input type="submit" value="login">
+<input type="text" name="username" value="" placeholder="Enter Username"><br>
+<br>
+<input type="password" name="password" value="" placeholder="Enter Passsword"><br>
+<br>
+<input type="submit" value="Login">
 
 </form>
+</div>
 
 
 {% endblock %}
