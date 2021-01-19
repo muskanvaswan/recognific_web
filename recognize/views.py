@@ -45,10 +45,7 @@ def attendace_api(request, classname):
         # classname = data['classname']
         option = data['option']
         if option == "day":
-            try:
-                date = data['date']
-            except:
-                date = 0
+            date = data['date']
 
             attendance_sheet_day(date, classname)
             return HttpResponse("True")
