@@ -38,6 +38,9 @@ class ClassSet(models.Model):
     def __str__(self):
         return f"{self.name} by {self.teacher}"
 
+    def get_file_url(self):
+        return f"/Attendance/sheet_{self.id}.xlsx"
+
 
 @receiver(post_save, sender=ClassSet)
 def my_handler(sender, **kwargs):
