@@ -10,6 +10,7 @@ def index(request):
     return render(request, 'base/index.html')
 
 
+## Authentication Functionality ##
 def sign_in(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -49,7 +50,7 @@ def sign_up(request):
             raw_password = form.cleaned_data.get('password2')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect("/")
+            return redirect("/dashboard")
         else:
             return redirect("/accounts/sign_up/")
     else:
