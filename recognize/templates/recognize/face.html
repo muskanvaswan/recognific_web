@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<img src="{% url 'camera' classname %}" alt="">
+<div class="p-5">
+  <div class="d-flex">
+    <div class="mx-auto">
+      <img src="{% url 'camera' classname %}" alt="" >
+      
+    </div>
+
+  </div>
+</div>
 {% endblock %}
