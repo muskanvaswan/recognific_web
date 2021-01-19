@@ -73,5 +73,5 @@ class VideoCamera(object):
         person = max(self.recognised, key=self.recognised.count)
         a = Attendance(classname=self.classset, student=person)
         a.save()
-        attendance = [person.get_full_name(), str(datetime.datetime.now())]
-        csv_writter(attendance)
+        # attendance = [person.get_full_name(), str(datetime.datetime.now())]
+        # csv_writter(attendance)
