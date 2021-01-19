@@ -73,5 +73,8 @@ class VideoCamera(object):
         person = max(self.recognised, key=self.recognised.count)
         a = Attendance(classname=self.classset, student=person)
         a.save()
+        img = fr.load_image_file("images/checkmark.gif")
+        res, jpeg = cv2.imencode('.jpeg', img)
+        return jpeg.tobytes()
         # attendance = [person.get_full_name(), str(datetime.datetime.now())]
         # csv_writter(attendance)

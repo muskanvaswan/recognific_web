@@ -29,7 +29,9 @@ def gen_rendered(camera):
         frame = camera.detect()
         yield (b'--frame\r\n'
                b'Content-Type: image.jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-    camera.attendace()
+    frame = camera.attendace()
+    yield (b'--frame\r\n'
+           b'Content-Type: image.jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
 
 def stream_view(request, classname):
