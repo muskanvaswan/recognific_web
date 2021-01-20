@@ -39,7 +39,7 @@ class ClassSet(models.Model):
         return f"{self.name} by {self.teacher}"
 
     def get_file_url(self):
-        return f"/Attendance/sheet_{self.id}.xlsx"
+        return f"/media/Attendance/sheet_{self.id}.xlsx"
 
 
 @receiver(post_save, sender=ClassSet)

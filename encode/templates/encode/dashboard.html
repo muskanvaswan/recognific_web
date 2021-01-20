@@ -21,11 +21,12 @@
               <div class="d-flex">
                 <button type="button" class="btn btn-primary m-2" data-classname="{{ ClassSet.id }}" onclick="attendance(this)"name="button">Make Attendance Sheet</button>
                 <div id="{{ ClassSet.id }}" class="invisible">
-                  <button type="button" name="download" class="btn btn-success my-2">
+
                     <a href="{{ ClassSet.get_file_url }}" type="file/xlsx" download>
+                      <button type="button" name="download" class="btn btn-success my-2">
                         <i class="fa fa-download"></i>
+                      </button>
                     </a>
-                  </button>
                 </div>
               </div>
             </div>

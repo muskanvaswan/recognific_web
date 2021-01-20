@@ -118,11 +118,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+MEDIA_ROOT = 'media'
+MEDIA_URL = '/media/'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-LOGIN_URL="login"
-LOGIN_REDIRECT_URL ="index"
