@@ -3,14 +3,28 @@
 {% block additional_css %}<link rel="stylesheet" href="{% static 'css/index.css' %} ">
 {% endblock %}
 
+{% block title %}
+Dashboard
+{% endblock %}
+
 {% block body %}
 <div class=" container p-5">
   <h1>Dashboard</h1>
   <div class="p-5">
     <h5>  Your Classes:</h5>
-    <p>Download Attendance for a <input type="text" name="option" value="day" id="option"></p>
-    <input type="hidden" name="date" id="date" value="0">
+    <div class="d-flex">
+      <p class="my-auto mr-2">Download Attendance for a</p>
+      <select class="form-control w-25 m-2" name="option" id="option" value="day">
+        <option value="day">Day</option>
+        <option value="month">Month</option>
+      </select>
+    </div>
+    <p>
+
+    </p>
+    <input type="date" name="date" id="date" value="0">
     <input type="hidden" name="month" id="month" value="0">
+
     <div>
 
       {% for ClassSet in classes %}
@@ -44,8 +58,17 @@
       document.getElementById(id).className = '';
 
     }
+    function updateDate(){
+      if (document.getElementById('date')=='0' || document.getElementById('date')==0){
+        return 0;
+      }
+      a = document.getElementById('date').value.split('-');
+      a.forEach((item, index, arr) => {arr[index] = parseInt(item);})
+      return a;
+    }
     function attendance(e){
-        var data = JSON.stringify({"option":document.getElementById('option').value,"date":document.getElementById('date').value, "month":document.getElementById('month').value});
+        date = updateDate()
+        var data = JSON.stringify({"option":document.getElementById('option').value,"date":date, "month":document.getElementById('month').value});
 
         var xhr = new XMLHttpRequest();
         xhr.withCredentials = true;
@@ -61,6 +84,7 @@
         xhr.send(data);
         window.setTimeout(appendDownload(e.dataset.classname) ,3000);
     }
+
 
 
 
