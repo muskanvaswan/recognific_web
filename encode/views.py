@@ -12,6 +12,18 @@ class ClassSetCreateView(LoginRequiredMixin, CreateView):
     template_name = 'encode/create.html'
 
 
+class ClassSetDetailView(LoginRequiredMixin, TemplateView):
+    template_name = 'encode/classset.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        id = self.kwargs.get('classset_id')
+        object = ClassSet.objects.get(pk=id)
+        context['classset'] = object
+        context['attendance'] = object.attendees.all()[:10][::-1]
+        return context
+
+
 class StudentCreateView(LoginRequiredMixin, CreateView):
     model = Student
     success_url = reverse_lazy('index')
