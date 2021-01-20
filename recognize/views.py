@@ -29,7 +29,8 @@ def gen_rendered(camera):
         frame = camera.detect()
         yield (b'--frame\r\n'
                b'Content-Type: image.jpeg\r\n\r\n' + frame + b'\r\n\r\n')
-    frame = camera.attendace()
+    frame = camera.attendace()[0]
+
     yield (b'--frame\r\n'
            b'Content-Type: image.jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
