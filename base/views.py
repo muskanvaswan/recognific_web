@@ -27,7 +27,7 @@ def sign_in(request):
             return render(request, 'base/accounts/login.html', context)
     else:
         if request.user.is_authenticated:
-            return reverse_lazy('index')
+            return redirect('/dashboard/')
         else:
             return render(request, 'base/accounts/login.html')
 
