@@ -74,7 +74,9 @@ class VideoCamera(object):
         a = Attendance(classname=self.classset, student=person)
         a.save()
         img = fr.load_image_file("images/checkmark.gif")
+        img = cv2.putText(img, "Attendance marked for "+person.get_full_name(),  (35, 290),
+                          cv2.FONT_HERSHEY_SIMPLEX,  0.5, (0, 0, 0), 1, cv2.LINE_AA)
         res, jpeg = cv2.imencode('.jpeg', img)
-        return jpeg.tobytes()
+        return (jpeg.tobytes(), a.id)
         # attendance = [person.get_full_name(), str(datetime.datetime.now())]
         # csv_writter(attendance)
