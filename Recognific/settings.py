@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'recognize.apps.RecognizeConfig',
     'encode.apps.EncodeConfig',
     'crispy_forms',
+    'django.contrib.humanize',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
