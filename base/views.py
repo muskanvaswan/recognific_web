@@ -44,8 +44,19 @@ def about(request):
 def sign_up(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
+        try:
+            type = request.POST['type']
+        except:
+            pass
         if form.is_valid():
-            form.save()
+            u = form.save()
+            if type == "teacher":
+                role = request.POST['role']
+                Teacher.objects.create(user=u, role=role)
+            else if type == "student":
+                pass
+            else:
+                pass
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password2')
             user = authenticate(username=username, password=raw_password)
