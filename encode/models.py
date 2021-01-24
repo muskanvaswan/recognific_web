@@ -13,7 +13,7 @@ from .encodings import encode_image, make_encodings
 
 
 class Student(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User,  related_name='student', on_delete=models.CASCADE, null=True)
     # first_name = models.CharField(max_length=80)
     # last_name = models.CharField(max_length=80, default='')
 
