@@ -13,8 +13,10 @@ from .encodings import encode_image, make_encodings
 
 
 class Student(models.Model):
-    first_name = models.CharField(max_length=80)
-    last_name = models.CharField(max_length=80, default='')
+    user = models.OneToOneField(User)
+    # first_name = models.CharField(max_length=80)
+    # last_name = models.CharField(max_length=80, default='')
+
     # classname = models.ManyToManyField(ClassSet, related_name='students')
     image = models.ImageField(upload_to='images/students')
     encodings = models.JSONField(blank=True, null=True)
