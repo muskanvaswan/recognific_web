@@ -45,36 +45,7 @@
   text-align: center;
 }
 
-.title2 {
-  font-family: Nunito Sans;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 25px;
-  line-height: 35px;
-  display: flex;
-  align-items: center;
-  color: #fcf9f9;
-}
 
-.title3 {
-  font-family: Nunito Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 30px;
-  color: #fcf9f9;
-}
-
-.title4 {
-  font-family: Nunito Sans;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 20px;
-  display: flex;
-  align-items: center;
-  color: #fcf9f9;
-}
 
 #hover-target:hover {
   background-color: rgb(32, 31, 31);

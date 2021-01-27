@@ -40,6 +40,9 @@ def log_out_view(request):
 def about(request):
     return render(request, 'base/about.html')
 
+def contact(request):
+    return render(request, 'base/contact.html')
+
 
 def sign_up(request):
     if request.method == 'POST':
@@ -53,7 +56,7 @@ def sign_up(request):
             if type == "teacher":
                 role = request.POST['role']
                 Teacher.objects.create(user=u, role=role)
-            else if type == "student":
+            elif type == "student":
                 pass
             else:
                 pass

@@ -1,0 +1,39 @@
+
+ .title2 {
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 35px;
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.title3 {
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+  color: #fcf9f9;
+}
+
+.title4 {
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  color: #fcf9f9;
+}
+
+
+.image{
+
+  width: 350px;
+ height: 350px;
+  float:"Right";
+}
