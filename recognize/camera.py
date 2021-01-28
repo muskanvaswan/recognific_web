@@ -53,7 +53,7 @@ class VideoCamera(object):
             image = fr.face_encodings(frame)[0]
             matches = fr.face_distance(self.encodings, image)
             i = np.where(matches == min(matches))[0][0]
-            name = self.IMAGES_LIST[i].get_full_name()
+            name = self.IMAGES_LIST[i].user.get_full_name()
             self.recognised.append(self.IMAGES_LIST[i])
 
         except:
@@ -74,7 +74,7 @@ class VideoCamera(object):
         a = Attendance(classname=self.classset, student=person)
         a.save()
         img = fr.load_image_file("images/checkmark.gif")
-        img = cv2.putText(img, "Attendance marked for "+person.get_full_name(),  (35, 290),
+        img = cv2.putText(img, "Attendance marked for "+person.user.get_full_name(),  (35, 290),
                           cv2.FONT_HERSHEY_SIMPLEX,  0.5, (0, 0, 0), 1, cv2.LINE_AA)
         res, jpeg = cv2.imencode('.jpeg', img)
         return (jpeg.tobytes(), a.id)
