@@ -27,7 +27,7 @@ class ClassSetDetailView(LoginRequiredMixin, TemplateView):
 class StudentCreateView(LoginRequiredMixin, CreateView):
     model = Student
     success_url = reverse_lazy('index')
-    fields = ['first_name', 'last_name', 'image']
+    fields = ['user', 'image']
     template_name = 'encode/create.html'
 
 
