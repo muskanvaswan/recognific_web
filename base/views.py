@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from base.forms import SignUpForm
 from django.urls import reverse_lazy
+from django.contrib.auth.forms import UserCreationForm
 
 
 def index(request):
@@ -40,33 +41,38 @@ def log_out_view(request):
 def about(request):
     return render(request, 'base/about.html')
 
+
 def contact(request):
     return render(request, 'base/contact.html')
 
 
+# def sign_up(request):
+    # if request.method == 'POST':
+    # form = SignUpForm(request.POST)
+    # if form.is_valid():
+    # form.save()
+    # username = form.cleaned_data.get('username')
+    # raw_password = form.cleaned_data.get('password2')
+    # user = authenticate(username=username, password=raw_password)
+    # login(request, user)
+    # return redirect("/dashboard")
+    # else:
+    # return redirect("/accounts/sign_up/")
+    # else:
+    # form = SignUpForm()
+    # return render(request, 'base/accounts/sign_up.html', {'form': form})
+
+
 def sign_up(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        try:
-            type = request.POST['type']
-        except:
-            pass
+        form = UserCreationForm(request.POST)
         if form.is_valid():
-            u = form.save()
-            if type == "teacher":
-                role = request.POST['role']
-                Teacher.objects.create(user=u, role=role)
-            elif type == "student":
-                pass
-            else:
-                pass
+            form.save()
             username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password2')
+            raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect("/dashboard")
-        else:
-            return redirect("/accounts/sign_up/")
+            return redirect('/dashboard')
     else:
-        form = SignUpForm()
-        return render(request, 'base/accounts/sign_up.html', {'form': form})
+        form = UserCreationForm()
+    return render(request, 'base/accounts/sign_up.html', {'form': form})
