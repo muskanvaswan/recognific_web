@@ -34,6 +34,7 @@ Dashboard
             <div class="card-body d-flex justify-content-between">
               <h5>{{ ClassSet.name }}</h5>
               <div class="d-flex">
+                <button type="button" class="btn btn-primary m-2"><a href="{% url 'activate' ClassSet.id %}">Activate</a></button>
                 <button type="button" class="btn btn-primary m-2" data-classname="{{ ClassSet.id }}" onclick="attendance(this)"name="button">Make Attendance Sheet</button>
                 <div id="{{ ClassSet.id }}" class="invisible">
 
