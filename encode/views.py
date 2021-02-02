@@ -38,6 +38,15 @@ class DashboardView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['classes'] = self.request.user.classes.all()
+        attendance = []
+        for classname in self.request.user.classes.all():
+            class_attendance = {
+                "classname": classname.name,
+                "attended": self.request.user.student.attendance.filter(classname=classname).count(),
+                "total": classname.occourance
+            }
+            attendance.append(class_attendance)
+        context['attendance'] = attendance
         return context
 
 
