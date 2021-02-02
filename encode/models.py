@@ -48,9 +48,11 @@ class ClassSet(models.Model):
     def activate(self):
         self.active = True
         self.occourance += 1
+        self.save()
 
     def deactivate(self):
         self.active = False
+        self.save()
 
 
 @receiver(post_save, sender=ClassSet)
