@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
-from base.forms import SignUpForm
+# from base.forms import SignUpForm
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
+from .models import Teacher
+from encode.models import Student
+from .forms import StudentCreateForm
 
 
 def index(request):
@@ -45,7 +48,6 @@ def about(request):
 def contact(request):
     return render(request, 'base/contact.html')
 
-
 # def sign_up(request):
     # if request.method == 'POST':
     # form = SignUpForm(request.POST)
@@ -72,7 +74,26 @@ def sign_up(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('/dashboard')
+            return redirect('/accounts/sign_up_as/')
     else:
         form = UserCreationForm()
     return render(request, 'base/accounts/sign_up.html', {'form': form})
+
+
+def sign_up_as(request):
+    if request.method == 'POST':
+        type = request.POST['type']
+        if type == "Teacher":
+            user = request.user
+            role = request.POST['role']
+            Teacher.objects.create(user=user, role=role)
+            return redirect('/dashboard')
+        elif type == "Student":
+            user = request.user
+            image = request.FILES['image']
+            Student.objects.create(user=user, image=image)
+            return redirect('/dashboard')
+        else:
+            pass
+    else:
+        return render(request, 'base/accounts/sign_up_as.html')
