@@ -45,3 +45,9 @@ def activate_class_set(request, classset_id):
     ClassSetObject = ClassSet.objects.get(pk=classset_id)
     ClassSetObject.activate()
     return redirect('/dashboard')
+
+
+def deactivate_class_set(request, classset_id):
+    ClassSetObject = ClassSet.objects.get(pk=classset_id)
+    ClassSetObject.deactivate()
+    return redirect('/dashboard')
