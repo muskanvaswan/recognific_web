@@ -3,6 +3,7 @@ from django.views.generic import TemplateView
 from .models import ClassSet, Student
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 
 
 class ClassSetCreateView(LoginRequiredMixin, CreateView):
@@ -38,3 +39,9 @@ class DashboardView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['classes'] = self.request.user.classes.all()
         return context
+
+
+def activate_class_set(request, classset_id):
+    ClassSetObject = ClassSet.objects.get(pk=classset_id)
+    ClassSetObject.activate()
+    return redirect('/dashboard')
