@@ -5,5 +5,5 @@ from django.contrib.auth.models import User
 
 
 class Teacher(models.Model):
-    user = models.OneToOneField(User, related_name='user', unique=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name='teacher', unique=True, on_delete=models.CASCADE)
     role = models.CharField(blank=True, max_length=200)
