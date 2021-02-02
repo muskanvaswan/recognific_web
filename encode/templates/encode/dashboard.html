@@ -8,6 +8,7 @@ Dashboard
 {% endblock %}
 
 {% block body %}
+{% if user.teacher %}
 <div class=" container p-5">
   <h1>Dashboard</h1>
   <div class="p-5">
@@ -53,41 +54,70 @@ Dashboard
 
 
   </div>
-  <script type="text/javascript">
-    function appendDownload(id){
-      document.getElementById(id).className = '';
 
-    }
-    function updateDate(){
-      if (document.getElementById('date')=='0' || document.getElementById('date')==0){
-        return 0;
-      }
-      a = document.getElementById('date').value.split('-');
-      a.forEach((item, index, arr) => {arr[index] = parseInt(item);})
-      return a;
-    }
-    function attendance(e){
-        date = updateDate()
-        var data = JSON.stringify({"option":document.getElementById('option').value,"date":date, "month":document.getElementById('month').value});
-
-        var xhr = new XMLHttpRequest();
-        xhr.withCredentials = true;
-
-        xhr.addEventListener("readystatechange", function() {
-          if(this.readyState === 4) {
-            console.log(this.responseText);
-          }
-        });
-
-        xhr.open("POST", `http://127.0.0.1:8000/r/api/make_sheet/${e.dataset.classname}/`);
-
-        xhr.send(data);
-        window.setTimeout(appendDownload(e.dataset.classname) ,3000);
-    }
-
-
-
-
-  </script>
 </div>
+{% endif %}
+{% if user.student %}
+<div class="p-5">
+  <h5>Your Attendance</h5>
+
+  {% for attend in user.student.attendance.all %}
+    <div>
+      <div class="card m-3">
+        <div class="card-body d-flex justify-content-between">
+          <h5>{{ attend.classname.name }}</h5>
+          <h5>{{ attend.time}}</h5>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+<a href="{% url 'create_classset' %}" class="btn btn-primary"> Create Class </a>
+<a href="{% url 'create_student' %}" class="btn btn-primary"> Create Student </a>
+
+
+</div>
+
+{% else %}
+<h1>do it again </h1>
+{% endif %}
+{% endblock %}
+
+{% block additional_js %}
+<script type="text/javascript">
+  function appendDownload(id){
+    document.getElementById(id).className = '';
+
+  }
+  function updateDate(){
+    if (document.getElementById('date')=='0' || document.getElementById('date')==0){
+      return 0;
+    }
+    a = document.getElementById('date').value.split('-');
+    a.forEach((item, index, arr) => {arr[index] = parseInt(item);})
+    return a;
+  }
+  function attendance(e){
+      date = updateDate()
+      var data = JSON.stringify({"option":document.getElementById('option').value,"date":date, "month":document.getElementById('month').value});
+
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = true;
+
+      xhr.addEventListener("readystatechange", function() {
+        if(this.readyState === 4) {
+          console.log(this.responseText);
+        }
+      });
+
+      xhr.open("POST", `http://127.0.0.1:8000/r/api/make_sheet/${e.dataset.classname}/`);
+
+      xhr.send(data);
+      window.setTimeout(appendDownload(e.dataset.classname) ,3000);
+  }
+
+
+
+
+</script>
 {% endblock %}
