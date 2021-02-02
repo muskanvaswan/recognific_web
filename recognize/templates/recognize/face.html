@@ -4,8 +4,11 @@
 <div class="p-5">
   <div class="d-flex">
     <div class="mx-auto">
+      <h3>{{ message }}</h3>
+      {% if classname %}
       <img src="{% url 'camera' classname %}" alt="" >
-      
+      {% endif %}
+
     </div>
 
   </div>
