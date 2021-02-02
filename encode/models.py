@@ -36,12 +36,18 @@ class ClassSet(models.Model):
     name = models.CharField(max_length=100)
     teacher = models.ManyToManyField(User, blank=True, related_name="classes")
     students = models.ManyToManyField(Student, related_name='classname')
+    active = models.BooleanField(default=False)
+    occourance = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.name} by {self.teacher}"
 
     def get_file_url(self):
         return f"/media/Attendance/sheet_{self.id}.xlsx"
+
+    def activate(self):
+        self.active = True
+        self.occourance += 1
 
 
 @receiver(post_save, sender=ClassSet)
