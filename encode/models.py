@@ -48,6 +48,9 @@ class ClassSet(models.Model):
     def activate(self):
         self.active = True
         self.occourance += 1
+        for m in self.marked.all():
+            m.allow = True
+            m.save()
         self.save()
 
     def deactivate(self):
