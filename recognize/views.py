@@ -10,6 +10,7 @@ from django.template import loader, Context
 from django.http import StreamingHttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
+from encode.models import ClassSet
 from .sheet import attendance_sheet_day, attendance_sheet_month
 
 t = loader.get_template('recognize/camera.html')  # or whatever
@@ -18,9 +19,17 @@ buffer = '+' * 1024
 
 def face_view(request, classname):
     # print(classname)
-    context = {
-        "classname": classname
-    }
+    ClassSetObject = ClassSet.objects.get(pk=classname.split('class')[1])
+    if ClassSetObject.active == True:
+        context = {
+            "classname": classname,
+            "message": "Ensure that there is plenty light in the room."
+        }
+    else:
+        context = {
+            "message": "This class is not currently in progress"
+        }
+
     return render(request, 'recognize/face.html', context)
 
 
