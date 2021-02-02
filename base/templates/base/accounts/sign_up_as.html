@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body %}
+<div class="container p-5">
+  <h2>Sign up</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <select type="text" name="type" value="">
+      <option value="Teacher">Teacher</option>
+      <option value="Student">Student</option>
+    </select>
+    <input type="file" name="image" value="">
+    
+    <button type="submit">Sign up</button>
+  </form>
+  </div>
+{% endblock %}
