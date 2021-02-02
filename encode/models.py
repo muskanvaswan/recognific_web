@@ -49,6 +49,9 @@ class ClassSet(models.Model):
         self.active = True
         self.occourance += 1
 
+    def deactivate(self):
+        self.active = False
+
 
 @receiver(post_save, sender=ClassSet)
 def my_handler(sender, **kwargs):
