@@ -6,7 +6,7 @@ import sys
 import datetime
 from .reader import reading_encodings, csv_writter
 from encode.models import Student, ClassSet
-from .models import Attendance
+from .models import Attendance, Marked
 
 
 IMAGES_LIST = os.listdir('images/creators/')
@@ -71,12 +71,25 @@ class VideoCamera(object):
 
     def attendace(self):
         person = max(self.recognised, key=self.recognised.count)
-        a = Attendance(classname=self.classset, student=person)
-        a.save()
-        img = fr.load_image_file("images/checkmark.gif")
-        img = cv2.putText(img, "Attendance marked for "+person.user.get_full_name(),  (35, 290),
-                          cv2.FONT_HERSHEY_SIMPLEX,  0.5, (0, 0, 0), 1, cv2.LINE_AA)
+        try:
+            allowed = Marked.objects.get(classname=self.classset, student=person).allow
+        except:
+            Marked.objects.create(classname=self.classset, student=person)
+            allowed = True
+        if allowed:
+            a = Attendance(classname=self.classset, student=person)
+            a.save()
+            close = Marked.objects.get(classname=self.classset, student=person)
+            close.allow = False
+            close.save()
+            img = fr.load_image_file("images/checkmark.gif")
+            img = cv2.putText(img, "Attendance marked for "+person.user.get_full_name(),
+                              (35, 290), cv2.FONT_HERSHEY_SIMPLEX,  0.5, (0, 0, 0), 1, cv2.LINE_AA)
+        else:
+            img = fr.load_image_file("images/checkmark.gif")
+            img = cv2.putText(img, "Your attendance has already been Marked",  (35, 290),
+                              cv2.FONT_HERSHEY_SIMPLEX,  0.5, (0, 0, 0), 1, cv2.LINE_AA)
         res, jpeg = cv2.imencode('.jpeg', img)
-        return (jpeg.tobytes(), a.id)
+        return (jpeg.tobytes(), 0)
         # attendance = [person.get_full_name(), str(datetime.datetime.now())]
         # csv_writter(attendance)
