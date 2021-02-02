@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from .models import Teacher
 from encode.models import Student
-from .forms import StudentCreateForm
+# from .forms import StudentCreateForm
 
 
 def index(request):
