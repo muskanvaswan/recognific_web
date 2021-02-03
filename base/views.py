@@ -8,6 +8,8 @@ from .models import Teacher
 from encode.models import Student
 # from .forms import StudentCreateForm
 from django.views.generic.edit import UpdateView
+from django.views.generic import FormView
+from . import forms
 
 
 def index(request):
@@ -45,9 +47,6 @@ def log_out_view(request):
 def about(request):
     return render(request, 'base/about.html')
 
-
-def contact(request):
-    return render(request, 'base/contact.html')
 
 # def sign_up(request):
     # if request.method == 'POST':
@@ -105,3 +104,13 @@ class UserUpdateView(UpdateView):
     template_name = 'encode/update.html'
     success_url = reverse_lazy('dashboard')
     fields = ['first_name', 'last_name', 'email']
+
+
+class ContactView(FormView):
+    template_name = 'base/contact.html'
+    form_class = forms.ContactForm
+    success_url = reverse_lazy('index')
+
+    def form_valid(self, form):
+        form.send_email()
+        return super().form_valid(form)
