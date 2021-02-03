@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block title %}Log In{% endblock %}
-{% block additional_css %}<link rel="stylesheet" href="{% static 'css/index.css' %} ">{% endblock %}
+{% block additional_css %}<link rel="stylesheet" href="{% static 'css/index.css' %} ">
+<link rel="stylesheet" href="{% static 'css/contact.css' %} ">{% endblock %}
 
 {% block body %}
 
@@ -12,19 +13,29 @@
 </div>
 {% endif %}
 
-<div class=" container p-5">
-    <div class=" heading">
+<div class="d-flex justify-content-center">
+<div class="row h-100">
+<div class=" container p-5 mx-auto my-auto">
+    <div class=" heading my-4">
       Login
     </div>
-    <form method="post" action="{% url 'login' %}">
+    <form class = "form-group w-100" method="post" action="{% url 'login' %}">
     {% csrf_token %}
-      <input type="text" name="username" value="" placeholder="Enter Username"><br>
-      <br>
-      <input type="password" name="password" value="" placeholder="Enter Passsword"><br>
-      <br>
-      <input type="submit" value="Login">
+    <div class = "form-group my-3">
+      <label class = "title4" for="username">Enter username:</label>
+      <input class = "form-control w-100" type="text" name="username" value="" placeholder="Enter Username">
+    </div>
+    <div class = "form-group my-3">
+      <label class = "title4" for="password">Enter password:</label>
+      <input class = "form-control w-100" type="password" name="password" value="" placeholder="Enter Passsword">
+    </div>
+    <div class = "d-flex">
+      <button type="submit"class= "btn btn-primary mx-auto my-4" >Login</button>
+    </div>
 
     </form>
+</div>
+</div>
 </div>
 
 

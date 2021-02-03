@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% block body %}
 <div class="container p-5">
-  <h2>Sign up</h2>
+  <div class = "mx-5">
+  <h1 class="heading">Sign up</h1>
+  </div>
+  <div class= "p-5 w-75">
 
   <form method="post">
     {% csrf_token %}
     {{form| crispy}}
-    <div class="d-flex">
-    <button type="submit"class= "btn btn-primary w-50 my-5 mx-auto" >Sign up</button>
-    </div>
+        <button type="submit"class= "btn btn-primary w-50 my-5" >Sign up</button>
+
   </form>
+  </div>
   </div>
 {% endblock %}
