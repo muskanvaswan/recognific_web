@@ -108,9 +108,9 @@ Dashboard
 
 
 </div>
-
-{% else %}
-<h1>do it again </h1>
+{% endif %}
+{% if not user.teacher and not user.student %}
+<h1>Invalid User Please Sign Up again </h1>
 {% endif %}
 {% endblock %}
 
