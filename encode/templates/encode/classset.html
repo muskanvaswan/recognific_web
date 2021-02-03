@@ -7,7 +7,7 @@
 
 {% block body %}
 <div class=" container p-5">
-  <h5>Name: {{ classset.name }}</h5>
+  <h3>Name: {{ classset.name }}</h3>
   <div>
     <h5>Teacher/Professors:</h5>
     {% for teacher in classset.teacher.all %}
@@ -32,6 +32,10 @@
       </div>
     {% endfor %}
   </div>
+  <a href="{% url 'update_classset' classset.id %}">
+    <i class="fa fa-pencil"></i>
+    Edit
+  </a>
   <div>
     <h5>Attendance:</h5>
     {% for attendee in attendance %}
