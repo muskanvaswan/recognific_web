@@ -40,7 +40,7 @@ class DashboardView(TemplateView):
         context['classes'] = self.request.user.classes.all()
         attendance = []
         try:
-            for classname in self.request.user.student.classes.all():
+            for classname in self.request.user.student.classname.all():
                 class_attendance = {
                     "classname": classname.name,
                     "attended": self.request.user.student.attendance.filter(classname=classname).count(),
