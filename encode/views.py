@@ -1,4 +1,4 @@
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import TemplateView
 from .models import ClassSet, Student
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -8,9 +8,16 @@ from django.shortcuts import redirect
 
 class ClassSetCreateView(LoginRequiredMixin, CreateView):
     model = ClassSet
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('dashboard')
     fields = ['name', 'students', 'teacher']
     template_name = 'encode/create.html'
+
+
+class ClassSetUpdateView(LoginRequiredMixin, UpdateView):
+    model = ClassSet
+    success_url = reverse_lazy('dashboard')
+    fields = ['name', 'students', 'teacher']
+    template_name = 'encode/update.html'
 
 
 class ClassSetDetailView(LoginRequiredMixin, TemplateView):
@@ -32,7 +39,7 @@ class StudentCreateView(LoginRequiredMixin, CreateView):
     template_name = 'encode/create.html'
 
 
-class DashboardView(TemplateView):
+class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'encode/dashboard.html'
 
     def get_context_data(self, **kwargs):
