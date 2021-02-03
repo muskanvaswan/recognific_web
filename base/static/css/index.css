@@ -26,3 +26,6 @@ line-height: 26px;
 
 color: #000000;
 } */
+#banner {
+  min-height: 100vh;
+}
