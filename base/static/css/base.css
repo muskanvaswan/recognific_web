@@ -1,8 +1,14 @@
 body{
 
-background-color:#9CB5F5;
- color:black;
+background-color:#0b225c;
+ color:white;
 }
+button , input, select , label {
+  color: white !important;
+  text-decoration-color: white;
+  text-decoration: none;
+}
+
 
 /* */
 .heading
@@ -16,7 +22,16 @@ background-color:#9CB5F5;
   font-weight: normal;
   font-size: 80px;
   line-height: 103px;
-  color: black;
+  color: white;
 
 
+}
+.glass{
+  background: rgba(162, 186, 238, 0.2);
+
+ box-shadow: inset 0 0 0 3000px rgba(255,255,255,0.3);
+ /* filter: blur(10px); */
+}
+.mint-glass{
+  background: rgba(65, 215, 202, 0.2);
 }
