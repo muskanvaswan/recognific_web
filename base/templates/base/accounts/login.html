@@ -14,9 +14,9 @@
 {% endif %}
 
 <div class="d-flex justify-content-center">
-<div class="row h-100">
-<div class=" container p-5 mx-auto my-auto">
-    <div class=" heading my-4">
+<div class="row h-100 w-50">
+<div class=" container p-5 border border-secondary mt-5 rounded rounded-5 mx-75 my-auto">
+    <div class=" heading my-4 text-center">
       Login
     </div>
     <form class = "form-group w-100" method="post" action="{% url 'login' %}">
@@ -30,7 +30,7 @@
       <input class = "form-control w-100" type="password" name="password" value="" placeholder="Enter Passsword">
     </div>
     <div class = "d-flex">
-      <button type="submit"class= "btn btn-primary mx-auto my-4" >Login</button>
+      <button type="submit"class= "btn btn-primary mx-auto my-4 w-100" >Login</button>
     </div>
 
     </form>
