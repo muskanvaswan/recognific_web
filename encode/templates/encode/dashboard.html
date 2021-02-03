@@ -33,7 +33,11 @@ Dashboard
           <div class="card m-3">
             <div class="card-body d-flex justify-content-between">
               <div>
-                <h5>{{ ClassSet.name }}</h5>
+                <h5>
+                  <a href="{% url 'update_classset' ClassSet.id %}">
+                    {{ ClassSet.name }}
+                  </a>
+                </h5>
                 {% if ClassSet.active %}
                 Active at <a class="text-info" href="http://127.0.0.1:8000/r/face/class{{ ClassSet.id }}/"><u>http://127.0.0.1:8000/r/face/class{{ ClassSet.id }}/</u></a>
                 {% endif %}
