@@ -1,56 +1,50 @@
+<!-- prettier-ignore -->
 {% extends 'base.html' %}
-{% load static %}
-{% block additional_css %}<link rel="stylesheet" href="{% static 'css/contact.css' %} ">
-<link rel="stylesheet" href="{% static 'css/index.css' %} ">
+{% block title %}
+Contact | CSI
 {% endblock %}
-{% block title %}Contact Us{% endblock %}
-{% block body %}
-<div class=" container p-5">
 
-  <h1 class="heading" > Contact Us</h1>
-</div>
-<div class=" container px-5">
-    <div class="row">
-       <div class="col-sm-6">
+{% load static %}
+{% load crispy_forms_tags %}
+{% block additional_css %}
+<link rel="stylesheet" href="{% static 'home/css/contact.css' %}" />
+<!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
 
-                <div class="title2"> Muskan Vaswan:</div>
+{% endblock %} {% block body %}
 
-                <div class="title3">
-                  Email: muskanvaswan@gmail.com
-                  </div>
-                  <div class="title3"> Github: <a href="https://github.com/muskanvaswan">https://github.com/muskanvaswan</a></div>
-
-
-                <div class="title2"> Arushi Singla:</div>
-
-                <div class="title3">
-                  Email: arushisingla1911@gmail.com
-                  </div>
-                  <div class="title3"> Github: <a href="https://github.com/arushisingla">https://github.com/arushisingla</a></div>
-
-
-                  <div class="title2"> Shreya Mukherji:</div>
-
-                  <div class="title3">
-                    Email: shreya.mukherji123@gmail.com
-                    </div>
-                    <div class="title3"> Github: <a href="https://github.com/shreyazmz">https://github.com/shreyazmz</a></div>
-
-
-                    <div class="title2"> Arhant Bhatt:</div>
-
-                    <div class="title3">
-                      Email: arhantbhatt10@yahoo.com
-                      </div>
-                      <div class="title3"> Github: <a href="https://github.com/arhantbhatt">https://github.com/arhantbhatt</a></div>
-
-        </div>
-        <div class="col-sm-4">
-
-             <img  src="{% static '/Logo/RECOGNIFIC_LOGO1.gif' %}" alt="Logo" class="image" />
-
-        </div>
-    </div>
+<div class="p-3 container">
+  <div class="display-4 p-5 linked text-center text-white">
+    <strong>Contact Us</strong>
+  </div>
+  <div class="text-white p-3 p-sm-5">
+    <form class="border p-3 rounded" method="post">
+      {% csrf_token %} {{ form|crispy}}
+      <div class="p-2 pt-5">
+        <button type="submit" class="form-control btn btn-success">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
 </div>
 
+{% endblock %} {% block bottombar %}{% endblock %} {% block additional_js %}
+<!-- <script src="{% static 'home/js/index.js' %}"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script> -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.topology.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+<script>
+  VANTA.WAVES({
+    el: "#main",
+    mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.0,
+    minWidth: 200.0,
+    scale: 1.0,
+    scaleMobile: 1.0,
+    color: 0x250f3c,
+  });
+</script>
 {% endblock %}
