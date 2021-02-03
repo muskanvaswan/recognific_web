@@ -3,13 +3,20 @@ body{
 background-color:#0b225c;
  color:white;
 }
-button , input, select , label {
+button,select ,input, label {
   color: white !important;
   text-decoration-color: white;
   text-decoration: none;
 }
 
+option{
+  color:black !important;
+}
 
+.form-group input{
+
+  color: black !important;
+}
 
 .heading{
   font-family: 'Vidaloka', serif;
