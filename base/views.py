@@ -3,10 +3,11 @@ from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from base.forms import UserCreateForm
 from django.urls import reverse_lazy
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from .models import Teacher
 from encode.models import Student
 # from .forms import StudentCreateForm
+from django.views.generic.edit import UpdateView
 
 
 def index(request):
@@ -97,3 +98,10 @@ def sign_up_as(request):
             pass
     else:
         return render(request, 'base/accounts/sign_up_as.html')
+
+
+class UserUpdateView(UpdateView):
+    model = User
+    template_name = 'encode/update.html'
+    success_url = reverse_lazy('dashboard')
+    fields = ['first_name', 'last_name', 'email']
