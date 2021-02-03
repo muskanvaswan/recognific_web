@@ -127,3 +127,12 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Email configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'csi.bennett19@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'csi.bennett19@gmail.com'
+EMAIL_HOST_PASSWORD = 'frjhzxsksnwqbyma'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
