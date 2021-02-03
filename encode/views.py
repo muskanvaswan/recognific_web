@@ -60,6 +60,10 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         return context
 
 
+class Profile(LoginRequiredMixin, TemplateView):
+    template_name = 'encode/profile.html'
+
+
 def activate_class_set(request, classset_id):
     ClassSetObject = ClassSet.objects.get(pk=classset_id)
     ClassSetObject.activate()

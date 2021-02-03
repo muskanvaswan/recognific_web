@@ -5,6 +5,8 @@ from . import views
 
 urlpatterns = [
     path('', views.DashboardView.as_view(), name="dashboard"),
+    path('profile', views.Profile.as_view(), name="profile"),
+
     path('classset/create/', views.ClassSetCreateView.as_view(), name="create_classset"),
     path('classset/update/<pk>/', views.ClassSetUpdateView.as_view(), name="update_classset"),
 
