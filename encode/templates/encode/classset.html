@@ -12,7 +12,7 @@
     <h5>Teacher/Professors:</h5>
     {% for teacher in classset.teacher.all %}
       <div>
-        <div class="card m-3">
+        <div class="card bg-transparent border border-info m-3">
           <div class="card-body d-flex justify-content-between">
             <h5>{{ teacher.get_full_name }}</h5>
           </div>
@@ -24,7 +24,7 @@
     <h5>Students:</h5>
     {% for student in classset.students.all %}
       <div>
-        <div class="card m-3">
+        <div class="card bg-transparent border border-info m-3">
           <div class="card-body d-flex justify-content-between">
             <h5>{{ student.get_full_name }}</h5>
           </div>
@@ -40,7 +40,7 @@
     <h5>Attendance:</h5>
     {% for attendee in attendance %}
       <div>
-        <div class="card m-3">
+        <div class="card bg-transparent border border-info m-3">
           <div class="card-body d-flex justify-content-between">
             <h5>{{ attendee.student.get_full_name }}</h5>
             <h5>{{ attendee.time |naturalday }}</h5>
