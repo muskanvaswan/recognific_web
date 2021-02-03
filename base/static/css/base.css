@@ -4,19 +4,12 @@ background-color:#9CB5F5;
  color:black;
 }
 
-/* */
-.heading
-{
 
-  /*font-family: 'Playfair Display', serif;*/
-  /*font-family: 'Telex', sans-serif;*/
+.heading{
   font-family: 'Vidaloka', serif;
-
   font-style:normal;
   font-weight: normal;
   font-size: 80px;
   line-height: 103px;
   color: black;
-
-
 }
