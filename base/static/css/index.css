@@ -4,6 +4,13 @@ p{
   text-align: justify;
 }
 
+.image{
+
+  width: 350px;
+ height: 350px;
+  align-items: center;
+}
+
 /*body{
   position: absolute;
 width: 727px;

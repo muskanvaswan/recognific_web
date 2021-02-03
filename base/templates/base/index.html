@@ -4,30 +4,30 @@
 {% endblock %}
 {% block title %}Home{% endblock %}
 {% block body %}
-<div class=" container p-5">
-  <h1 class="heading" > Recognific </h1>
+<div class="container p-5">
+  <div class="row h-25 my-5 ">
+    <div class="col">
+      <h1 class="heading" > Recognific </h1>
+    </div>
   </div>
-  <div class="container">
-  <div class="row">
-    <div class="col-sm-6">
-      <p><br>
-        <br>
+
+  <div class="row h-50 justify-content-between">
+    <div class="col-sm-6 my-5">
+      <p>
 
         In a world powered by automation, taking attendance manually may seem like a tedious task. Hence, devising a system that allows the recording of attendance will enable a smoother transition into teaching, without much of a hassle. Recognific, through a user-friendly, web-based attendance model that makes the use of facial recognition, faciliates the same.
       </p>
 
-    <div class="form-group">
+    <div class="form-group my-5">
       <a href="{% url 'login'  %}">
-        <br>
-        <br>
         <button class="btn btn-warning w-25 rounded-pill" type="button" name="button">Get Started</button>
       </a>
 
     </div>
       </div>
 
-    <div class="col-sm">
-        <img src="{% static '/Logo/RECOGNIFIC_LOGO1.gif' %}" alt="Logo" width="350" height="350" align="Right" />
+    <div class="col-sm-4 align-self-center">
+        <img src="{% static '/Logo/RECOGNIFIC_LOGO1.gif' %}" alt="Logo" class="image" />
     </div>
     </div>
 

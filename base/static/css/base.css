@@ -10,14 +10,9 @@ button , input, select , label {
 }
 
 
-/* */
-.heading
-{
 
-  /*font-family: 'Playfair Display', serif;*/
-  /*font-family: 'Telex', sans-serif;*/
+.heading{
   font-family: 'Vidaloka', serif;
-
   font-style:normal;
   font-weight: normal;
   font-size: 80px;
