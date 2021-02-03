@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate, logout
-# from base.forms import SignUpForm
+from base.forms import UserCreateForm
 from django.urls import reverse_lazy
 from django.contrib.auth.forms import UserCreationForm
 from .models import Teacher
@@ -67,7 +67,7 @@ def contact(request):
 
 def sign_up(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserCreateForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -76,7 +76,7 @@ def sign_up(request):
             login(request, user)
             return redirect('/accounts/sign_up_as/')
     else:
-        form = UserCreationForm()
+        form = UserCreateForm()
     return render(request, 'base/accounts/sign_up.html', {'form': form})
 
 
