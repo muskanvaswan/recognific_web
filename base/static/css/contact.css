@@ -3,18 +3,18 @@
   font-family: Nunito Sans;
   font-style: normal;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 35px;
   line-height: 35px;
   display: flex;
   align-items: center;
-  color: black;
+  color: #F4A0DD;
 }
 
 .title3 {
   font-family: Nunito Sans;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 30px;
   line-height: 30px;
   color: #fcf9f9;
 }
