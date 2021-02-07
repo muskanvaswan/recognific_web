@@ -17,9 +17,21 @@ Dashboard
 {% block body %}
 <div class=" container p-5">
 {% if user.teacher %}
+<div class="row justify-content-between ">
+  <div class="col-10">
 
   <h1 class="heading">Dashboard</h1>
   <h1>Welcome {{ user.get_full_name }}</h1>
+  </div>
+
+    <a href="{% url 'logout' %}" class="col-2 align-self-center">
+      <button type="button" class="btn btn-primary btn-lg" name="button">
+
+        Logout!
+      </button>
+    </a>
+
+    </div>
   <a href="{% url 'profile' %}">
     <button type="button" class="btn btn-primary rounded rounded-pill" name="button">
       <i class="fa fa-profile"></i>
@@ -125,7 +137,7 @@ Dashboard
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingOne">
           <button class="accordion-button collapsed border border-info " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            Last Attendended
+            Last Attended
           </button>
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
