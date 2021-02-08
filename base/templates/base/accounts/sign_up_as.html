@@ -3,26 +3,39 @@
 {% load static %}
 {% block additional_css %}<link rel="stylesheet" href="{% static 'css/index.css' %} ">
 {% endblock %}
+
 {% block body %}
-<div class="container p-5" id="banner">
-  <h2>Sign up</h2>
+<div class="container p-5">
+  {% if message %}
+  <div class="alert alert-danger" role="alert">
+    {{ message }}
+  </div>
+{% endif %}
+  <div class="d-flex justify-content-center">
+  <div class="row h-100  w-50 " id="banner">
+  <div class=" container p-5 border border-white mt-5 rounded rounded-5 mx-75 my-auto">
+      <div class=" my-4 text-center">
+        <h1 class = "heading"> Sign-up </h1>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <select type="text" name="type" id="type" value="" onfocusout="toggleForm()">
+            <option value="Teacher">Teacher</option>
+            <option value="Student">Student</option>
+          </select>
+          <div class="invisible" id="student-form">
+            <input type="file" name="image" value="">
+          </div>
+          <div class="invisible" id="teacher-form">
+            <input type="text" name="role" value="">
+          </div>
 
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <select type="text" name="type" id="type" value="" onfocusout="toggleForm()">
-      <option value="Teacher">Teacher</option>
-      <option value="Student">Student</option>
-    </select>
-    <div class="invisible" id="student-form">
-      <input type="file" name="image" value="">
-    </div>
-    <div class="invisible" id="teacher-form">
-      <input type="text" name="role" value="">
-    </div>
-
-    <button type="submit" class= "btn btn-primary">Sign up</button>
+      <div class = "d-flex">
+        <button type="submit"class= "btn btn-primary mx-auto my-4 w-50" >Sign-up</button>
+        </div>
   </form>
+  </div>
 </div>
+
 {% endblock %}
 {% block additional_js %}
 <script type="text/javascript">
