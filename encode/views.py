@@ -45,6 +45,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['classes'] = self.request.user.classes.all()
+        context['lattended'] = self.request.user.student.attendance.all()[::-1][:10]
         attendance = []
         try:
             for classname in self.request.user.student.classname.all():
