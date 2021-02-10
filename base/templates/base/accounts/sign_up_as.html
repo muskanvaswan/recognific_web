@@ -16,17 +16,20 @@
   <div class=" container p-5 border border-white mt-5 rounded rounded-5 mx-75 my-auto">
       <div class=" my-4 text-center">
         <h1 class = "heading"> Sign-up </h1>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post" enctype="multipart/form-data" class="form-group">
           {% csrf_token %}
-          <select type="text" name="type" id="type" value="" onfocusout="toggleForm()">
+          <select type="text" name="type" id="type" value="" onfocusout="toggleForm()" class="form-control bg-transparent" placeholder = "Are you a Student or a Teacher?">
+            <option value="" disabled selected> Are you a student or a teacher?</option>
             <option value="Teacher">Teacher</option>
             <option value="Student">Student</option>
           </select>
-          <div class="invisible" id="student-form">
-            <input type="file" name="image" value="">
+          <div class="d-none" id="student-form">
+            <label>Upload Student Image</label>
+            <input type="file" name="image" value="" class="form-control">
           </div>
-          <div class="invisible" id="teacher-form">
-            <input type="text" name="role" value="">
+          <div class="d-none" id="teacher-form">
+            <label>Enter Role</label>
+            <input type="text" name="role" value="" class="form-control" placeholder = "eg. Asst. Professor">
           </div>
 
       <div class = "d-flex">
@@ -43,10 +46,19 @@
    type = document.getElementById('type').value;
    console.log(type);
    if (type=="Teacher"){
-     document.getElementById('teacher-form').classList.remove('invisible');
+     document.getElementById('teacher-form').classList.remove('d-none');
+     if (!('d-none' in document.getElementById('student-form').classList)){
+       document.getElementById('student-form').classList += ' d-none ';
+
+     }
+
    }
    else {
-     document.getElementById('student-form').classList.remove('invisible');
+     document.getElementById('student-form').classList.remove('d-none');
+     if(!('d-none' in document.getElementById('teacher-form').classList)){
+       document.getElementById('teacher-form').classList += ' d-none ';
+
+     }
 
    }
  }
