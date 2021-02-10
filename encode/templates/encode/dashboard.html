@@ -10,6 +10,10 @@
 </style>
 {% endblock %}
 
+{% block additional_js %}
+<script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}
+
 {% block title %}
 Dashboard
 {% endblock %}
@@ -163,8 +167,4 @@ Dashboard
   {% endif %}
 
 </div>
-{% endblock %}
-
-{% block additional_js %}
-<script src="{% static 'encode/js/dashboard.js' %}"></script>
 {% endblock %}
