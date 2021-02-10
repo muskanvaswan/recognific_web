@@ -8,7 +8,9 @@
     <div class="mx-auto">
       <h3>{{ message }}</h3>
       {% if classname %}
-      <img src="{% url 'camera' classname %}" alt="" >
+      <div class = "d-flex">
+      <img class = "mx-auto img-fluid" src="{% url 'camera' classname %}" alt="" >
+      </div>
       {% endif %}
 
     </div>
