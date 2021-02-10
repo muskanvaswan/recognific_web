@@ -54,6 +54,9 @@ Dashboard
 
     <div class=" my-2  rounded ">
       <h5>  Your Classes:</h5>
+      {% if not classes %}
+        <p>You aren't teaching any classes yet. </p>
+      {% endif %}
 
       {% for ClassSet in classes %}
         <div>
@@ -107,6 +110,9 @@ Dashboard
 
       <div class=" my-3  rounded">
         <p> Your Attendance</p>
+        {% if not attendance %}
+          <p>You are not enrolled in any classes yet. </p>
+        {% endif %}
         {% for a in attendance %}
           <div>
             <div class="card my-3 border-info bg-transparent ">
@@ -130,6 +136,9 @@ Dashboard
       <div>
         <h5>Last Attended:</h5>
         <div class="accordion-body">
+          {% if not lattended %}
+            <p>You have not attended any classes yet. </p>
+          {% endif %}
           {% for attend in lattended %}
             <div>
               <div class="card rounded bg-transparent">
@@ -139,7 +148,9 @@ Dashboard
                 </div>
               </div>
             </div>
+
           {% endfor %}
+
         </div>
       </div>
     </div>
