@@ -20,7 +20,6 @@ Dashboard
     <div class="col-10">
       <h1 class="heading">Dashboard</h1>
     </div>
-
     <a href="{% url 'logout' %}" class="col-2 align-self-center">
       <button type="button" class="btn btn-primary btn-lg" name="button">
         Logout!
@@ -34,10 +33,12 @@ Dashboard
       View Profile
     </button>
   </a>
+  <!-- Teacher view -->
   {% if user.teacher %}
 
   <div class="p-5 rounded rounded-4 my-4 border  border-info">
     <div class="row">
+      <!-- Form and functionality for downloading attendance sheet -->
       <div class="col-sm d-flex">
         <p class="my-auto mr-2">Download Attendance for a</p>
       </div>
@@ -104,7 +105,9 @@ Dashboard
     </div>
   </div>
   {% endif %}
+  <!-- End of teacher view -->
 
+  <!-- Student view -->
   {% if user.student %}
     <div class="p-5 border border-info  rounded">
 
@@ -139,6 +142,7 @@ Dashboard
           {% if not lattended %}
             <p>You have not attended any classes yet. </p>
           {% endif %}
+
           {% for attend in lattended %}
             <div>
               <div class="rounded bg-transparent border-bottom">
@@ -148,9 +152,7 @@ Dashboard
                 </div>
               </div>
             </div>
-
           {% endfor %}
-
         </div>
       </div>
     </div>
