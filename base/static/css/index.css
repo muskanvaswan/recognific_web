@@ -28,4 +28,5 @@ color: #000000;
 } */
 #banner {
   min-height: 100vh;
+  background-size:  auto 900px !important;
 }
