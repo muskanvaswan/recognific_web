@@ -15,30 +15,27 @@ Dashboard
 {% endblock %}
 
 {% block body %}
-<div class=" container p-5">
-  <h1>Welcome {{ user.get_full_name }}</h1>
-{% if user.teacher %}
-<div class="row justify-content-between ">
-  <div class="col-10">
-
-  <h1 class="heading">Dashboard</h1>
-
-  </div>
+<div class=" container p-5" id="banner">
+  <div class="row justify-content-between ">
+    <div class="col-10">
+      <h1 class="heading">Dashboard</h1>
+    </div>
 
     <a href="{% url 'logout' %}" class="col-2 align-self-center">
       <button type="button" class="btn btn-primary btn-lg" name="button">
-
         Logout!
       </button>
     </a>
-
-    </div>
+  </div>
+  <h1>Welcome {{ user.get_full_name }}</h1>
   <a href="{% url 'profile' %}">
     <button type="button" class="btn btn-primary rounded rounded-pill" name="button">
       <i class="fa fa-profile"></i>
       View Profile
     </button>
   </a>
+  {% if user.teacher %}
+
   <div class="p-5 rounded rounded-4 my-4 border  border-info">
     <div class="row">
       <div class="col-sm d-flex">
@@ -54,9 +51,6 @@ Dashboard
         <input type="date" name="date" id="date" class="bg-transparent form-control m-2" value="0">
       </div>
     </div>
-
-
-
 
     <div class=" my-2  rounded ">
       <h5>  Your Classes:</h5>
@@ -76,15 +70,15 @@ Dashboard
                 {% endif %}
               </div>
               <div class="d-flex">
+
                 {% if not ClassSet.active %}
                 <button type="button" class="btn btn-primary m-2 rounded rounded-pill"><a href="{% url 'activate' ClassSet.id %}">Activate</a></button>
                 {% else %}
                 <button type="button" class="btn btn-danger m-2 rounded rounded-pill"><a href="{% url 'deactivate' ClassSet.id %}">Deactivate</a></button>
                 {% endif %}
-
                 <button type="button" class="btn btn-primary m-2 rounded rounded-pill" data-classname="{{ ClassSet.id }}" onclick="attendance(this)"name="button">Make Attendance Sheet</button>
-                <div id="{{ ClassSet.id }}" class="invisible">
 
+                <div id="{{ ClassSet.id }}" class="invisible">
                     <a href="{{ ClassSet.get_file_url }}" type="file/xlsx" download>
                       <button type="button" name="download" class="btn btn-success my-2 rounded rounded-pill">
                         <i class="fa fa-download"></i>
@@ -98,67 +92,64 @@ Dashboard
       {% endfor %}
     </div>
     <div class="row">
-      <div class="col-6 p-2">
-        <a href="{% url 'create_classset' %}" class="btn btn-primary w-100 rounded rounded-pill"> Create Class </a>
-      </div>
-      <div class="col-6 p-2">
-        <a href="{% url 'create_student' %}" class="btn btn-primary w-100 rounded rounded-pill"> Create Student </a>
-      </div>
+        <div class="col-6 p-2">
+          <a href="{% url 'create_classset' %}" class="btn btn-primary w-100 rounded rounded-pill"> Create Class </a>
+        </div>
+        <div class="col-6 p-2">
+          <a href="{% url 'create_student' %}" class="btn btn-primary w-100 rounded rounded-pill"> Create Student </a>
+        </div>
     </div>
-
   </div>
+  {% endif %}
 
-{% endif %}
-{% if user.student %}
-  <div class="p-5 border border-info  rounded">
+  {% if user.student %}
+    <div class="p-5 border border-info  rounded">
 
-    <div class=" my-3  rounded">
-      <p> Your Attendance</p>
-      {% for a in attendance %}
-        <div>
-          <div class="card my-3 border-info bg-transparent ">
-            <div class="card-body hover-white">
-              <div class="d-flex justify-content-between">
-                <p>{{ a.classname }}</p>
-                <p>{{ a.attended }}/{{ a.total }}</p>
-              </div>
-              <div class="progress mb-3 mx-3">
-                <div class="progress-bar" role="progressbar" data-valuenow="{{ a.attended }}"
-                aria-valuemin="0" data-valuemax="{{ a.total }}" >
-                  <span class="sr-only">70% Complete</span>
+      <div class=" my-3  rounded">
+        <p> Your Attendance</p>
+        {% for a in attendance %}
+          <div>
+            <div class="card my-3 border-info bg-transparent ">
+              <div class="card-body hover-white">
+                <div class="d-flex justify-content-between">
+                  <p>{{ a.classname }}</p>
+                  <p>{{ a.attended }}/{{ a.total }}</p>
+                </div>
+                <div class="progress mb-3 mx-3">
+                  <div class="progress-bar" role="progressbar" data-valuenow="{{ a.attended }}"
+                  aria-valuemin="0" data-valuemax="{{ a.total }}" >
+                    <span class="sr-only">70% Complete</span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-    <div>
-      <h5>Last Attended:</h5>
-      <div class="accordion-body">
-        {% for attend in lattended %}
-          <div>
-            <div class="card rounded bg-transparent">
-              <div class="card-body d-flex justify-content-between">
-                <h5>{{ attend.classname.name }}</h5>
-                <h5>{{ attend.time}}</h5>
-              </div>
             </div>
           </div>
         {% endfor %}
       </div>
+      <div>
+        <h5>Last Attended:</h5>
+        <div class="accordion-body">
+          {% for attend in lattended %}
+            <div>
+              <div class="card rounded bg-transparent">
+                <div class="card-body d-flex justify-content-between">
+                  <h5>{{ attend.classname.name }}</h5>
+                  <h5>{{ attend.time}}</h5>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-  </div>
+  {% endif %}
+
+  {% if not user.teacher and not user.student %}
+  <h1>Invalid User Please Sign Up again </h1>
+  {% endif %}
 
 </div>
-
-
-</div>
-{% endif %}
-{% if not user.teacher and not user.student %}
-<h1>Invalid User Please Sign Up again </h1>
-{% endif %}
 {% endblock %}
 
 {% block additional_js %}
