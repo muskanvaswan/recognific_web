@@ -6,10 +6,12 @@
 
 {% block body %}
 <div class=" container p-5" id="banner">
+  <h1> Enter your class details here: </h1>
+  <p>(Ctrl + click to select multiple)</p>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{form|crispy}}
-    <input type="submit" value="Save">
+    <input type ="submit" value="Save" class = "btn btn-primary w-100 my-4">
 </form>
 </div>
 {% endblock %}
