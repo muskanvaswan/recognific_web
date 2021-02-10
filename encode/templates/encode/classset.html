@@ -10,7 +10,7 @@
   <div class=" container p-5">
     <h3>Name: {{ classset.name }}</h3>
     <div>
-      <h5 class = "p-3 h5">Teacher/Professors:</h5>
+      <h5 class = "p-3 h5 border-bottom rounded">Teacher/Professors:</h5>
       <div class="p-1">
         {% for teacher in classset.teacher.all %}
         <div>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div>
-      <h5 class = "p-3 h5">Students:</h5>
+      <h5 class = "p-3 h5 border-bottom rounded">Students:</h5>
       <div class="p-1">
         {% for student in classset.students.all %}
         <div>
@@ -42,12 +42,12 @@
       Edit
     </a>
     <div>
-      <h5 class="p-3 h5">Attendance:</h5>
+      <h5 class="p-3 h5 border-bottom rounded">Attendance:</h5>
       <div class="p-1">
         {% for attendee in attendance %}
         <div>
-          <div class="card bg-transparent border border-info m-3">
-            <div class="card-body d-flex justify-content-between">
+          <div class="bg-transparent m-3">
+            <div class="d-flex justify-content-between">
               <h5>{{ attendee.student.get_full_name }}</h5>
               <h5>{{ attendee.time |naturalday }}</h5>
             </div>
