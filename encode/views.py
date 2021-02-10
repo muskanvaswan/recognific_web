@@ -45,9 +45,10 @@ class DashboardView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['classes'] = self.request.user.classes.all()
-        context['lattended'] = self.request.user.student.attendance.all()[::-1][:10]
         attendance = []
         try:
+            context['lattended'] = self.request.user.student.attendance.all()[::-1][:10]
+
             for classname in self.request.user.student.classname.all():
                 class_attendance = {
                     "classname": classname.name,
@@ -55,7 +56,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
                     "total": classname.occourance
                 }
                 attendance.append(class_attendance)
-                context['attendance'] = attendance
+            context['attendance'] = attendance
         except:
             pass
         return context
