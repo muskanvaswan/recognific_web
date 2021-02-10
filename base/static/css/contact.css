@@ -29,3 +29,23 @@
   align-items: center;
   color: black;
 }
+
+ .title6 {
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 10px;
+  display: flex;
+  align-items: center;
+  color: #F4A0DD;
+}
+
+.title7 {
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 5px;
+  color: #fcf9f9;
+}
