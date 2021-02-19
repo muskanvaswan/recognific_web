@@ -1,4 +1,4 @@
-![logo](\base\static\Logo\Icon_recognific.ico)
+![logo](https://raw.githubusercontent.com/muskanvaswan/recognific_web/master/base/static/Logo/Icon_recognific.ico)
 # Recognific Website
 
 ## Introduction
