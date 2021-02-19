@@ -1,0 +1,17 @@
+auth_group <br>                  
+django_migrations <br>         
+auth_group_permissions <br>      
+django_session <br>            
+auth_permission <br>             
+encode_classset <br>           
+auth_user <br>                   
+encode_classset_students <br>  
+auth_user_groups <br>            
+encode_classset_teacher <br>   
+auth_user_user_permissions <br><br>
+encode_student <br>            
+base_teacher <br>                
+recognize_attendance <br>      
+django_admin_log <br>            
+recognize_marked <br>          
+django_content_type <br>
