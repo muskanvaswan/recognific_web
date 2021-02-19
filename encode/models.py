@@ -14,15 +14,10 @@ from .encodings import encode_image, make_encodings
 
 class Student(models.Model):
     user = models.OneToOneField(User,  related_name='student', on_delete=models.CASCADE, null=True)
-    # first_name = models.CharField(max_length=80)
-    # last_name = models.CharField(max_length=80, default='')
-
-    # classname = models.ManyToManyField(ClassSet, related_name='students')
     image = models.ImageField(upload_to='images/students')
     encodings = models.JSONField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        #self.encodings = {"e": encode_image(self.image.url).tolist()}
         return super().save(*args, **kwargs)
 
     def get_full_name(self):
