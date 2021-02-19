@@ -1,3 +1,4 @@
+![logo](\base\static\Logo\Icon_recognific.ico)
 # Recognific Website
 
 ## Introduction
@@ -13,13 +14,27 @@ As the match gets confirmed, the time, as well as the name of the student will b
 3. Automatic calculation of percentage attendance per student, per class and more.
 4. User friendly website with scalable database structures.
 
+#### System Requirements for User
+1. Have a good internet connection.
+2. Use any of the following web browsers: Chrome, Mozilla or Safari.
+3. Working webcam and sufficient lighting.
+4. Permission to the website to access the webcam.
+
 ## Installation
 After initializing a folder on your local system, execute the following:
 [Make sure you have git CLI installed]
 ```bash
 git clone https://github.com/muskanvaswan/recognific_web.git
 ```
+
+Make a virtual environment, activate it, ensure that you are in your root directory and execute the following:
+```bash
+pip install -r requirements.txt
+```
+The file *requirements.txt* contains the dependencies for both the model and the website. *requirements1.txt* contains all the dependencies used for the face recognition model and *requiremnts2.txt* contains all the dependencies for the website itself.
+
 ## Structure of Codebase
+All of the URLs for the website can be found in [URLS.md](https://github.com/muskanvaswan/recognific_web/blob/master/URLS.md)
 #### The Base App (/base/)
 **URL**: "\\"
 
@@ -56,6 +71,21 @@ EMAIL_HOST_USER = 'YOUREMAIL@WHATEVER.COM'
 EMAIL_HOST_PASSWORD = 'YOUR EMAIL APP PASSWORD'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+```
+
+## Integrating your own database
+You can integrate your own database to the website provided there is no clash in [database table names](https://github.com/muskanvaswan/recognific_web/blob/master/TABLES.md). You can do this by changing the following settings in *Recognific/settings.py*. Following the given example:
+```py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': ‘<db_name>’,
+        'USER': '<db_username>',
+        'PASSWORD': '<password>',
+        'HOST': '<db_hostname_or_ip>',
+        'PORT': '<db_port>',
+    }
+}
 ```
 
 ## Deployment
