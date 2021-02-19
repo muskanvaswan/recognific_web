@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'encode.apps.EncodeConfig',
     'crispy_forms',
     'django.contrib.humanize',
+    'django_extensions',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
