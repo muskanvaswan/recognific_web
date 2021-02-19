@@ -19,6 +19,31 @@ After initializing a folder on your local system, execute the following:
 ```bash
 git clone https://github.com/muskanvaswan/recognific_web.git
 ```
+## Structure of Codebase
+#### The Base App (/base/)
+**URL**: "\\"
+
+This folder contains all the base functionality along with authentication and user models. This app also contains the base template and renders the home, about us and contact page.
+
+**Models included**: User, Teacher
+
+#### The Encode App (/encode/)
+**URL**: "\\dashboard\\"
+
+This folder contains all the functionality for interacting with different classes and students, i.e. creating, retrieving and deleting classes and students. This app also takes care of rendering the dashboard correctly. It also includes signals that connect these models to the recognize app, i.e. the Attendance model.
+
+**Models included**: ClassSet, Student
+
+#### The Recognize App (/recognize/)
+**URL**: "\\r\\"
+
+This folder contains the main functionality for the face recognition model, the VideoCamera object that is used in the streaming view along with functionality to mark the attendance correctly and update information in the respective ClassSet and Student model instances.
+
+Kindly note, before you make changes to the models in this app, make sure you carefully understand its implications on the signal activity of the encode app.
+
+**Models included**: Attendance
+
+
 ## Rebranding
 To rebrand the website to your use case, ensure that you exchange the Recognific logo with your own.
 Ensure that all the content on the contact page is suited to your institution.
@@ -40,4 +65,8 @@ python manage.py check --deploy
 ```
 This command will give you a checklist of things to do before deployment.
 
-## 
+## References
+[Repository for Model](https://github.com/muskanvaswan/recognific_model)<br>
+[Opencv Documentation](https://docs.opencv.org/master/)<br>
+[Face Recognition Model](https://pypi.org/project/face-recognition/)<br>
+[Django documentation](https://docs.djangoproject.com/en/3.1/)
